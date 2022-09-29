@@ -4,17 +4,22 @@
  */
 package ui;
 
+import employeeModel.EmployeeDirectory;
+
 /**
  *
  * @author manavhirey
  */
 public class HomeJFrame extends javax.swing.JFrame {
-
+    
+    EmployeeDirectory directory;
     /**
      * Creates new form HomeJFrame
      */
     public HomeJFrame() {
         initComponents();
+        
+        directory = new EmployeeDirectory();
     }
 
     /**
@@ -27,14 +32,32 @@ public class HomeJFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         splitPanel = new javax.swing.JSplitPane();
+        workPanel = new javax.swing.JPanel();
         controlPane = new javax.swing.JPanel();
         createButton = new javax.swing.JButton();
         viewButton = new javax.swing.JButton();
-        workPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        javax.swing.GroupLayout workPanelLayout = new javax.swing.GroupLayout(workPanel);
+        workPanel.setLayout(workPanelLayout);
+        workPanelLayout.setHorizontalGroup(
+            workPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 738, Short.MAX_VALUE)
+        );
+        workPanelLayout.setVerticalGroup(
+            workPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 576, Short.MAX_VALUE)
+        );
+
+        splitPanel.setRightComponent(workPanel);
+
         createButton.setText("Create Employee");
+        createButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createButtonActionPerformed(evt);
+            }
+        });
 
         viewButton.setText("View Employees");
 
@@ -42,37 +65,24 @@ public class HomeJFrame extends javax.swing.JFrame {
         controlPane.setLayout(controlPaneLayout);
         controlPaneLayout.setHorizontalGroup(
             controlPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(controlPaneLayout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, controlPaneLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(controlPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(createButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(viewButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(viewButton, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
         controlPaneLayout.setVerticalGroup(
             controlPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(controlPaneLayout.createSequentialGroup()
-                .addGap(258, 258, 258)
+                .addGap(242, 242, 242)
                 .addComponent(createButton)
                 .addGap(18, 18, 18)
                 .addComponent(viewButton)
-                .addContainerGap(266, Short.MAX_VALUE))
+                .addContainerGap(270, Short.MAX_VALUE))
         );
 
         splitPanel.setLeftComponent(controlPane);
-
-        javax.swing.GroupLayout workPanelLayout = new javax.swing.GroupLayout(workPanel);
-        workPanel.setLayout(workPanelLayout);
-        workPanelLayout.setHorizontalGroup(
-            workPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 641, Short.MAX_VALUE)
-        );
-        workPanelLayout.setVerticalGroup(
-            workPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 588, Short.MAX_VALUE)
-        );
-
-        splitPanel.setRightComponent(workPanel);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -80,19 +90,25 @@ public class HomeJFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(splitPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 788, Short.MAX_VALUE)
+                .addComponent(splitPanel)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(splitPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 588, Short.MAX_VALUE)
+                .addComponent(splitPanel)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void createButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtonActionPerformed
+        // TODO add your handling code here:
+        CreatePane createPane = new CreatePane(directory);
+        splitPanel.setRightComponent(createPane);
+    }//GEN-LAST:event_createButtonActionPerformed
 
     /**
      * @param args the command line arguments

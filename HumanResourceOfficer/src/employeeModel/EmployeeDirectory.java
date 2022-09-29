@@ -26,5 +26,9 @@ public class EmployeeDirectory {
         this.directory = directory;
     }
     
-    
+    public Employee addNewEmployee(){
+        Employee newEmployee = new Employee();
+        directory.add(newEmployee);
+        return newEmployee;
+    }
 }
