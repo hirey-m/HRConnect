@@ -126,15 +126,14 @@ public class CreatePane extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(titleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 838, Short.MAX_VALUE)
+                .addComponent(titleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 788, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(134, 134, 134)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(185, 185, 185)
-                        .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel9)
@@ -210,7 +209,7 @@ public class CreatePane extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel9))
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap(67, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -230,18 +229,19 @@ public class CreatePane extends javax.swing.JPanel {
         // TODO add your handling code here:
         
         String name = nameField.getText();
-        int employeeId = Integer.parseInt(empId.getText());
+        long employeeId = Long.parseLong(empId.getText());
         int age = Integer.parseInt(ageField.getText());;
         String gender = genderField.getText();;
         String startDate = sdField.getText();;
         String level = lvlField.getText();;
         String teamInfo = teamField.getText();;
         String position = posField.getText();;
-        int cellNo = Integer.parseInt(phoneField.getText());
+        long cellNo = Long.parseLong(phoneField.getText());
         String email = emailField.getText();
         
         Employee ne = directory.addNewEmployee();
         
+        ne.setEmployeeId(employeeId);
         ne.setName(name);
         ne.setAge(age);
         ne.setGender(gender);

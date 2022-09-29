@@ -11,14 +11,14 @@ package employeeModel;
 public class Employee {
     
     private String name;
-    private int employeeId;
+    private long employeeId;
     private int age;
     private String gender;
     private String startDate;
     private String level;
     private String teamInfo;
     private String position;
-    private int cellNo;
+    private long cellNo;
     private String email;
 
     public String getName() {
@@ -29,11 +29,11 @@ public class Employee {
         this.name = name;
     }
 
-    public int getEmployeeId() {
+    public long getEmployeeId() {
         return employeeId;
     }
 
-    public void setEmployeeId(int employeeId) {
+    public void setEmployeeId(long employeeId) {
         this.employeeId = employeeId;
     }
 
@@ -85,11 +85,11 @@ public class Employee {
         this.position = position;
     }
 
-    public int getCellNo() {
+    public long getCellNo() {
         return cellNo;
     }
 
-    public void setCellNo(int cellNo) {
+    public void setCellNo(long cellNo) {
         this.cellNo = cellNo;
     }
 
