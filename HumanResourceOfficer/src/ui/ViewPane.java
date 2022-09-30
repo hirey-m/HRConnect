@@ -302,7 +302,7 @@ public class ViewPane extends javax.swing.JPanel {
         
         directory.deleteEmp(selectedEmp);
         
-        JOptionPane.showMessageDialog(this, "Employee data deleted..");
+        JOptionPane.showMessageDialog(this, "Employee data deleted.");
         
         populateTable();
     }//GEN-LAST:event_deleteBtnActionPerformed

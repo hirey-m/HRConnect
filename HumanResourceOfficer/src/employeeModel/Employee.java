@@ -11,7 +11,7 @@ package employeeModel;
 public class Employee {
     
     private String name;
-    private long employeeId;
+    private String employeeId;
     private int age;
     private String gender;
     private String startDate;
@@ -29,11 +29,11 @@ public class Employee {
         this.name = name;
     }
 
-    public long getEmployeeId() {
+    public String getEmployeeId() {
         return employeeId;
     }
 
-    public void setEmployeeId(long employeeId) {
+    public void setEmployeeId(String employeeId) {
         this.employeeId = employeeId;
     }
 
@@ -101,4 +101,8 @@ public class Employee {
         this.email = email;
     }
     
+    @Override
+    public String toString(){
+        return employeeId;
+    }
 }

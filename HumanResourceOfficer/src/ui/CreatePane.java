@@ -229,7 +229,7 @@ public class CreatePane extends javax.swing.JPanel {
         // TODO add your handling code here:
         
         String name = nameField.getText();
-        long employeeId = Long.parseLong(empId.getText());
+        String employeeId = empId.getText();
         int age = Integer.parseInt(ageField.getText());;
         String gender = genderField.getText();;
         String startDate = sdField.getText();;
