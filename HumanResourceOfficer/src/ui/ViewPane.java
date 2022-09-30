@@ -104,6 +104,11 @@ public class ViewPane extends javax.swing.JPanel {
         jScrollPane1.setViewportView(empTable);
 
         viewBtn.setText("View");
+        viewBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewBtnActionPerformed(evt);
+            }
+        });
 
         deleteBtn.setText("Delete");
         deleteBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -306,6 +311,30 @@ public class ViewPane extends javax.swing.JPanel {
         
         populateTable();
     }//GEN-LAST:event_deleteBtnActionPerformed
+
+    private void viewBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewBtnActionPerformed
+        // TODO add your handling code here:
+        int SelectedRowIndex = empTable.getSelectedRow();
+        
+        if (SelectedRowIndex < 0){
+            JOptionPane.showMessageDialog(this, "Please select a row to delete.");
+            return;
+        }
+        
+        DefaultTableModel model = (DefaultTableModel) empTable.getModel();
+        Employee selectedEmp = (Employee) model.getValueAt(SelectedRowIndex, 0);
+        
+        nameField.setText(selectedEmp.getName());
+        empId.setText(String.valueOf(selectedEmp.getEmployeeId()));
+        ageField.setText(String.valueOf(selectedEmp.getAge()));
+        genderField.setText(selectedEmp.getGender());
+        sdField.setText(selectedEmp.getStartDate());
+        lvlField.setText(selectedEmp.getLevel());
+        teamField.setText(selectedEmp.getTeamInfo());
+        posField.setText(selectedEmp.getPosition());
+        phoneField.setText(String.valueOf(selectedEmp.getCellNo()));
+        emailField.setText(selectedEmp.getEmail());
+    }//GEN-LAST:event_viewBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
