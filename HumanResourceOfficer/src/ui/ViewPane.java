@@ -6,6 +6,7 @@ package ui;
 
 import employeeModel.Employee;
 import employeeModel.EmployeeDirectory;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -99,11 +100,17 @@ public class ViewPane extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        empTable.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(empTable);
 
         viewBtn.setText("View");
 
         deleteBtn.setText("Delete");
+        deleteBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteBtnActionPerformed(evt);
+            }
+        });
 
         jLabel5.setText("Start Date:");
 
@@ -280,6 +287,26 @@ public class ViewPane extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_genderFieldActionPerformed
 
+    private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
+        // TODO add your handling code here:
+        
+        int SelectedRowIndex = empTable.getSelectedRow();
+        
+        if (SelectedRowIndex < 0){
+            JOptionPane.showMessageDialog(this, "Please select a row to delete.");
+            return;
+        }
+        
+        DefaultTableModel model = (DefaultTableModel) empTable.getModel();
+        Employee selectedEmp = (Employee) model.getValueAt(SelectedRowIndex, 0);
+        
+        directory.deleteEmp(selectedEmp);
+        
+        JOptionPane.showMessageDialog(this, "Employee data deleted..");
+        
+        populateTable();
+    }//GEN-LAST:event_deleteBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField ageField;
@@ -317,7 +344,8 @@ public class ViewPane extends javax.swing.JPanel {
         for(Employee ne: directory.getDirectory()){
             
             Object[] row = new Object[10];
-            row[0] = ne.getEmployeeId();
+            row[0] = ne;
+            //row[0] = ne.getEmployeeId();
             row[1] = ne.getName();
             row[2] = ne.getGender();
             row[3] = ne.getPosition();
