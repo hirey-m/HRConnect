@@ -6,9 +6,12 @@ package ui;
 
 import employeeModel.Employee;
 import employeeModel.EmployeeDirectory;
+import java.io.File;
 import java.util.HashSet;
 import java.util.Set;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -21,6 +24,7 @@ public class CreatePane extends javax.swing.JPanel {
      */
     
     EmployeeDirectory directory;
+    String selectedImagePath = "";
     
     public CreatePane(EmployeeDirectory directory) {
         initComponents();
@@ -58,6 +62,8 @@ public class CreatePane extends javax.swing.JPanel {
         jLabel10 = new javax.swing.JLabel();
         emailField = new javax.swing.JTextField();
         saveBtn = new javax.swing.JButton();
+        jLabel11 = new javax.swing.JLabel();
+        uploadButton = new javax.swing.JButton();
 
         titleLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
         titleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -120,21 +126,26 @@ public class CreatePane extends javax.swing.JPanel {
             }
         });
 
+        jLabel11.setText("Photo:");
+
+        uploadButton.setText("Upload Photo");
+        uploadButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                uploadButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(titleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 788, Short.MAX_VALUE)
-                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(134, 134, 134)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(titleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 788, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(185, 185, 185)
-                        .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
+                        .addGap(125, 125, 125)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel9)
                             .addComponent(jLabel3)
@@ -145,7 +156,8 @@ public class CreatePane extends javax.swing.JPanel {
                             .addComponent(jLabel6)
                             .addComponent(jLabel7)
                             .addComponent(jLabel8)
-                            .addComponent(jLabel10))
+                            .addComponent(jLabel10)
+                            .addComponent(jLabel11))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(emailField, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -158,7 +170,14 @@ public class CreatePane extends javax.swing.JPanel {
                                 .addComponent(lvlField)
                                 .addComponent(teamField)
                                 .addComponent(posField, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(phoneField, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(phoneField, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(258, 258, 258)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(uploadButton, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -166,7 +185,7 @@ public class CreatePane extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(titleLabel)
-                .addGap(36, 36, 36)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addComponent(nameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -205,18 +224,49 @@ public class CreatePane extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(emailField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel10))
-                        .addGap(18, 18, 18)
-                        .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel10)))
                     .addComponent(jLabel9))
-                .addContainerGap(67, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(uploadButton))
+                .addGap(14, 14, 14)
+                .addComponent(saveBtn)
+                .addContainerGap(60, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void nameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_nameFieldActionPerformed
-
+    
+    public void createEmployee(String employeeId, String name, int age, String gender, String startDate, String level, String teamInfo, String position, Long cellNo, String email, String image){
+        Employee ne = directory.addNewEmployee();
+        
+        ne.setEmployeeId(employeeId);
+        ne.setName(name);
+        ne.setAge(age);
+        ne.setGender(gender);
+        ne.setStartDate(startDate);
+        ne.setLevel(level);
+        ne.setTeamInfo(teamInfo);
+        ne.setPosition(position);
+        ne.setCellNo(cellNo);
+        ne.setEmail(email);
+        ne.setImage(image);
+        
+        nameField.setText("");
+        empId.setText("");
+        ageField.setText("");
+        genderField.setText("");
+        sdField.setText("");
+        lvlField.setText("");
+        teamField.setText("");
+        posField.setText("");
+        phoneField.setText("");
+        emailField.setText("");
+    }
+    
     private void empIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_empIdActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_empIdActionPerformed
@@ -225,6 +275,7 @@ public class CreatePane extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_genderFieldActionPerformed
 
+    
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
         // TODO add your handling code here:
         
@@ -238,32 +289,12 @@ public class CreatePane extends javax.swing.JPanel {
         String position = posField.getText();;
         long cellNo = Long.parseLong(phoneField.getText());
         String email = emailField.getText();
+        String image = selectedImagePath;
         
-        Employee ne = directory.addNewEmployee();
-        
-        ne.setEmployeeId(employeeId);
-        ne.setName(name);
-        ne.setAge(age);
-        ne.setGender(gender);
-        ne.setStartDate(startDate);
-        ne.setLevel(level);
-        ne.setTeamInfo(teamInfo);
-        ne.setPosition(position);
-        ne.setCellNo(cellNo);
-        ne.setEmail(email);
+        createEmployee(employeeId, name, age, gender, startDate, level, teamInfo, position, cellNo, email, image);
         
         JOptionPane.showMessageDialog(this,"New Employee Added!");
         
-        nameField.setText("");
-        empId.setText("");
-        ageField.setText("");
-        genderField.setText("");
-        sdField.setText("");
-        lvlField.setText("");
-        teamField.setText("");
-        posField.setText("");
-        phoneField.setText("");
-        emailField.setText("");
         
     }//GEN-LAST:event_saveBtnActionPerformed
 
@@ -275,6 +306,22 @@ public class CreatePane extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_emailFieldActionPerformed
 
+    private void uploadButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadButtonActionPerformed
+        // TODO add your handling code here:
+        JFileChooser browseImageFile = new JFileChooser();
+        FileNameExtensionFilter fNameFilter = new FileNameExtensionFilter("IMAGES", "png", "jpeg","jpg");
+        browseImageFile.addChoosableFileFilter(fNameFilter);
+        int showOpenPopup = browseImageFile.showOpenDialog(null);
+        
+        if (showOpenPopup == JFileChooser.APPROVE_OPTION) {
+            File selectedImageFile = browseImageFile.getSelectedFile();
+            selectedImagePath = selectedImageFile.getAbsolutePath();
+            JOptionPane.showMessageDialog(null, selectedImagePath);
+            
+            
+        }
+    }//GEN-LAST:event_uploadButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField ageField;
@@ -283,6 +330,7 @@ public class CreatePane extends javax.swing.JPanel {
     private javax.swing.JTextField genderField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -299,5 +347,6 @@ public class CreatePane extends javax.swing.JPanel {
     private javax.swing.JTextField sdField;
     private javax.swing.JTextField teamField;
     private javax.swing.JLabel titleLabel;
+    private javax.swing.JButton uploadButton;
     // End of variables declaration//GEN-END:variables
 }

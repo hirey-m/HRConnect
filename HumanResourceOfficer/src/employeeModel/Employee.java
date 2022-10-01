@@ -20,6 +20,7 @@ public class Employee {
     private String position;
     private long cellNo;
     private String email;
+    private String image;
 
     public String getName() {
         return name;
@@ -105,4 +106,14 @@ public class Employee {
     public String toString(){
         return employeeId;
     }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+    
+    
 }

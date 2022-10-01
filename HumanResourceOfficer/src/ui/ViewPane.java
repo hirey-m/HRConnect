@@ -71,26 +71,26 @@ public class ViewPane extends javax.swing.JPanel {
 
         empTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "EmpID", "Name", "Gender", "Position", "Level", "Team", "Phone", "Email", "StartDate", "Age"
+                "EmpID", "Photo", "Name", "Gender", "Position", "Level", "Team", "Phone", "Email", "StartDate", "Age"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class
+                java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, true, false, false, false, false, false, false, false
+                false, false, false, true, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -285,7 +285,7 @@ public class ViewPane extends javax.swing.JPanel {
                 .addContainerGap(44, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
+ 
     private void emailFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_emailFieldActionPerformed
@@ -356,7 +356,7 @@ public class ViewPane extends javax.swing.JPanel {
         // TODO add your handling code here:
         String name = nameField.getText();
         String employeeId = empId.getText();
-        int age = Integer.parseInt(ageField.getText());;
+        int age = Integer.parseInt(ageField.getText());
         String gender = genderField.getText();;
         String startDate = sdField.getText();;
         String level = lvlField.getText();;
@@ -446,18 +446,20 @@ public class ViewPane extends javax.swing.JPanel {
         
         for(Employee ne: directory.getDirectory()){
             
-            Object[] row = new Object[10];
+            Object[] row = new Object[11];
             row[0] = ne;
             //row[0] = ne.getEmployeeId();
-            row[1] = ne.getName();
-            row[2] = ne.getGender();
-            row[3] = ne.getPosition();
-            row[4] = ne.getLevel();
-            row[5] = ne.getTeamInfo();
-            row[6] = ne.getCellNo();
-            row[7] = ne.getEmail();
-            row[8] = ne.getStartDate();
-            row[9] = ne.getAge();
+            row[1] = ne.getImage();
+            row[2] = ne.getName();
+            row[3] = ne.getGender();
+            row[4] = ne.getPosition();
+            row[5] = ne.getLevel();
+            row[6] = ne.getTeamInfo();
+            row[7] = ne.getCellNo();
+            row[8] = ne.getEmail();
+            row[9] = ne.getStartDate();
+            row[10] = ne.getAge();
+           
             
             model.addRow(row);
         }
