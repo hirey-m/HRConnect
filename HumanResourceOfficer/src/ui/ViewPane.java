@@ -403,8 +403,8 @@ public class ViewPane extends javax.swing.JPanel {
             imgLabel.setIcon(new ImageIcon(icon.getScaledInstance(172, 129, Image.SCALE_DEFAULT)));
         } catch (IOException ex) {
             Logger.getLogger(ViewPane.class.getName()).log(Level.SEVERE, null, ex);
-        } 
-        add(imgLabel);
+        }  
+       add(imgLabel);
         
     }//GEN-LAST:event_updateBtnActionPerformed
 

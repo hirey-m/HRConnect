@@ -6,9 +6,10 @@ package ui;
 
 import employeeModel.Employee;
 import employeeModel.EmployeeDirectory;
+import java.awt.event.KeyEvent;
 import java.io.File;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -50,7 +51,6 @@ public class CreatePane extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         genderField = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        sdField = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         lvlField = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
@@ -64,6 +64,7 @@ public class CreatePane extends javax.swing.JPanel {
         saveBtn = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
         uploadButton = new javax.swing.JButton();
+        sdField = new javax.swing.JFormattedTextField();
 
         titleLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
         titleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -74,6 +75,11 @@ public class CreatePane extends javax.swing.JPanel {
         nameField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nameFieldActionPerformed(evt);
+            }
+        });
+        nameField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                nameFieldKeyPressed(evt);
             }
         });
 
@@ -110,6 +116,11 @@ public class CreatePane extends javax.swing.JPanel {
                 phoneFieldActionPerformed(evt);
             }
         });
+        phoneField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                phoneFieldKeyPressed(evt);
+            }
+        });
 
         jLabel10.setText("Email ID:");
 
@@ -135,6 +146,8 @@ public class CreatePane extends javax.swing.JPanel {
             }
         });
 
+        sdField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -159,18 +172,17 @@ public class CreatePane extends javax.swing.JPanel {
                             .addComponent(jLabel10)
                             .addComponent(jLabel11))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(emailField, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(nameField)
-                                .addComponent(empId)
-                                .addComponent(ageField)
-                                .addComponent(genderField)
-                                .addComponent(sdField)
-                                .addComponent(lvlField)
-                                .addComponent(teamField)
-                                .addComponent(posField, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(phoneField, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(emailField, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
+                            .addComponent(nameField)
+                            .addComponent(empId)
+                            .addComponent(ageField)
+                            .addComponent(genderField)
+                            .addComponent(lvlField)
+                            .addComponent(teamField)
+                            .addComponent(posField, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
+                            .addComponent(phoneField, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
+                            .addComponent(sdField))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
@@ -202,10 +214,10 @@ public class CreatePane extends javax.swing.JPanel {
                     .addComponent(jLabel4)
                     .addComponent(genderField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(sdField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6)
                     .addComponent(lvlField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -232,7 +244,7 @@ public class CreatePane extends javax.swing.JPanel {
                     .addComponent(uploadButton))
                 .addGap(14, 14, 14)
                 .addComponent(saveBtn)
-                .addContainerGap(60, Short.MAX_VALUE))
+                .addContainerGap(57, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -277,13 +289,13 @@ public class CreatePane extends javax.swing.JPanel {
 
     
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here:   
         
         String name = nameField.getText();
         String employeeId = empId.getText();
         int age = Integer.parseInt(ageField.getText());;
         String gender = genderField.getText();;
-        String startDate = sdField.getText();;
+        String startDate = sdField.getText();
         String level = lvlField.getText();;
         String teamInfo = teamField.getText();;
         String position = posField.getText();;
@@ -322,6 +334,40 @@ public class CreatePane extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_uploadButtonActionPerformed
 
+    private void nameFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nameFieldKeyPressed
+        // TODO add your handling code here:
+        Pattern p = Pattern.compile("[^A-Za-z ]");
+        Matcher m = p.matcher(nameField.getText());
+       // boolean b = m.matches();
+        boolean b = m.find();
+        if (b){
+            JOptionPane.showMessageDialog(null,"Special Characters are not allowed.");
+            nameField.setText("");
+        }
+    }//GEN-LAST:event_nameFieldKeyPressed
+
+    private void phoneFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_phoneFieldKeyPressed
+        // TODO add your handling code here:
+         String phoneNumber = phoneField.getText();
+        int lengthOfPhoneNumber = phoneNumber.length();
+        char checkChar = evt.getKeyChar();
+        if (checkChar >= '0' && checkChar <= '9') {
+            if (lengthOfPhoneNumber < 10) {
+                phoneField.setEditable(true);
+            } else {
+                phoneField.setEditable(false);
+                JOptionPane.showMessageDialog(this, "Cannot add more than 10 Numbers!");
+            }
+        } else {
+            if (evt.getExtendedKeyCode() == KeyEvent.VK_BACK_SPACE || evt.getExtendedKeyCode() == KeyEvent.VK_DELETE) {
+                phoneField.setEditable(true);
+            } else {
+                phoneField.setEditable(false);
+            }
+        }
+        
+    }//GEN-LAST:event_phoneFieldKeyPressed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField ageField;
@@ -344,7 +390,7 @@ public class CreatePane extends javax.swing.JPanel {
     private javax.swing.JTextField phoneField;
     private javax.swing.JTextField posField;
     private javax.swing.JButton saveBtn;
-    private javax.swing.JTextField sdField;
+    private javax.swing.JFormattedTextField sdField;
     private javax.swing.JTextField teamField;
     private javax.swing.JLabel titleLabel;
     private javax.swing.JButton uploadButton;
