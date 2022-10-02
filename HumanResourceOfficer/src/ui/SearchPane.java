@@ -46,6 +46,7 @@ public class SearchPane extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         resultTable = new javax.swing.JTable();
         searchSelectBtn = new javax.swing.JButton();
+        searchBtn = new javax.swing.JButton();
 
         titleLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
         titleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -63,12 +64,6 @@ public class SearchPane extends javax.swing.JPanel {
 
         jLabel2.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         jLabel2.setText("Search by:");
-
-        searchField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                searchFieldKeyReleased(evt);
-            }
-        });
 
         resultTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -106,6 +101,13 @@ public class SearchPane extends javax.swing.JPanel {
             }
         });
 
+        searchBtn.setText("Search");
+        searchBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -114,16 +116,17 @@ public class SearchPane extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel2)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(comboSearchBy, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(jLabel1)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(comboSearchBy, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(searchBtn))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(232, 232, 232)
                         .addComponent(searchSelectBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -139,7 +142,8 @@ public class SearchPane extends javax.swing.JPanel {
                     .addComponent(comboSearchBy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel1)
-                    .addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(searchBtn))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -154,17 +158,107 @@ public class SearchPane extends javax.swing.JPanel {
 
     private void searchSelectBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchSelectBtnActionPerformed
         // TODO add your handling code here:
-        String search = searchField.getText();
-        String searchBy = comboSearchBy.getSelectedItem().toString();
+    
   
     }//GEN-LAST:event_searchSelectBtnActionPerformed
 
-    private void searchFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchFieldKeyReleased
+    private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
         // TODO add your handling code here:
+        String filter = comboSearchBy.getSelectedItem().toString();
         String search = searchField.getText();
-        searchFetch(search);
-    }//GEN-LAST:event_searchFieldKeyReleased
+        
+        if(filter.compareToIgnoreCase("employeeId") == 0){
+            populateByEmployeeId(search);
+        }
+        if(filter.compareToIgnoreCase("name") == 0){
+            populateByName(search);
+        }
+        if(filter.compareToIgnoreCase("age") == 0){
+            
+            populateByAge(Integer.parseInt(search));
+        }
+       
+        
+    }//GEN-LAST:event_searchBtnActionPerformed
 
+    private void populateByEmployeeId(String empId){
+        DefaultTableModel model = (DefaultTableModel) resultTable.getModel();
+        model.setRowCount(0);
+        
+        for(Employee ne: directory.getDirectory()){
+            if(empId.compareTo(ne.getEmployeeId()) == 0){
+                Object[] row = new Object[11];
+                row[0] = ne;
+                //row[0] = ne.getEmployeeId();
+                row[1] = ne.getImage();
+                row[2] = ne.getName();
+                row[3] = ne.getGender();
+                row[4] = ne.getPosition();
+                row[5] = ne.getLevel();
+                row[6] = ne.getTeamInfo();
+                row[7] = ne.getCellNo();
+                row[8] = ne.getEmail();
+                row[9] = ne.getStartDate();
+                row[10] = ne.getAge();
+
+
+                model.addRow(row);
+            }
+            
+        }
+    }
+    
+    private void populateByName(String name){
+        DefaultTableModel model = (DefaultTableModel) resultTable.getModel();
+        model.setRowCount(0);
+        for(Employee ne: directory.getDirectory()){
+            if(name.compareTo(ne.getName()) == 0){
+                Object[] row = new Object[11];
+                row[0] = ne;
+                //row[0] = ne.getEmployeeId();
+                row[1] = ne.getImage();
+                row[2] = ne.getName();
+                row[3] = ne.getGender();
+                row[4] = ne.getPosition();
+                row[5] = ne.getLevel();
+                row[6] = ne.getTeamInfo();
+                row[7] = ne.getCellNo();
+                row[8] = ne.getEmail();
+                row[9] = ne.getStartDate();
+                row[10] = ne.getAge();
+
+
+                model.addRow(row);
+            }
+        }
+    }
+    
+    private void populateByAge(int age){
+        DefaultTableModel model = (DefaultTableModel) resultTable.getModel();
+        model.setRowCount(0);
+        for(Employee ne: directory.getDirectory()){
+            if(age == ne.getAge()){
+                Object[] row = new Object[11];
+                row[0] = ne;
+                //row[0] = ne.getEmployeeId();
+                row[1] = ne.getImage();
+                row[2] = ne.getName();
+                row[3] = ne.getGender();
+                row[4] = ne.getPosition();
+                row[5] = ne.getLevel();
+                row[6] = ne.getTeamInfo();
+                row[7] = ne.getCellNo();
+                row[8] = ne.getEmail();
+                row[9] = ne.getStartDate();
+                row[10] = ne.getAge();
+
+
+                model.addRow(row);
+            }
+        }
+    }
+    
+    
     private void populateTable(){
         
         DefaultTableModel model = (DefaultTableModel) resultTable.getModel();
@@ -198,6 +292,7 @@ public class SearchPane extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable resultTable;
+    private javax.swing.JButton searchBtn;
     private javax.swing.JTextField searchField;
     private javax.swing.JButton searchSelectBtn;
     private javax.swing.JLabel titleLabel;
