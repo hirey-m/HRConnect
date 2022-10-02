@@ -38,17 +38,25 @@
                           <Component id="jLabel11" alignment="1" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="emailField" alignment="0" pref="350" max="32767" attributes="0"/>
-                          <Component id="nameField" alignment="0" max="32767" attributes="0"/>
-                          <Component id="empId" alignment="0" max="32767" attributes="0"/>
-                          <Component id="ageField" alignment="0" max="32767" attributes="0"/>
-                          <Component id="genderField" alignment="0" max="32767" attributes="0"/>
-                          <Component id="lvlField" alignment="0" max="32767" attributes="0"/>
-                          <Component id="teamField" alignment="0" max="32767" attributes="0"/>
-                          <Component id="posField" alignment="0" pref="350" max="32767" attributes="0"/>
-                          <Component id="phoneField" pref="350" max="32767" attributes="0"/>
-                          <Component id="sdField" alignment="0" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="emailField" alignment="0" pref="350" max="32767" attributes="0"/>
+                              <Component id="nameField" alignment="0" max="32767" attributes="0"/>
+                              <Component id="empId" alignment="0" max="32767" attributes="0"/>
+                              <Component id="ageField" alignment="0" max="32767" attributes="0"/>
+                              <Component id="lvlField" alignment="0" max="32767" attributes="0"/>
+                              <Component id="teamField" alignment="0" max="32767" attributes="0"/>
+                              <Component id="posField" alignment="0" pref="350" max="32767" attributes="0"/>
+                              <Component id="phoneField" pref="350" max="32767" attributes="0"/>
+                              <Component id="sdField" alignment="0" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Component id="fRadio" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="mRadio" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="oRadio" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
@@ -86,11 +94,13 @@
                   <Component id="ageField" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="genderField" alignment="0" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="fRadio" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="mRadio" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="oRadio" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="sdField" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -129,7 +139,7 @@
               </Group>
               <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
               <Component id="saveBtn" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="57" max="32767" attributes="0"/>
+              <EmptySpace pref="55" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -151,8 +161,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="nameField">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nameFieldActionPerformed"/>
-        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="nameFieldKeyPressed"/>
+        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="nameFieldFocusLost"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
@@ -162,7 +171,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="empId">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="empIdActionPerformed"/>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="empIdKeyPressed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
@@ -176,11 +185,6 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Gender"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="genderField">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="genderFieldActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
       <Properties>
@@ -215,7 +219,6 @@
     </Component>
     <Component class="javax.swing.JTextField" name="phoneField">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="phoneFieldActionPerformed"/>
         <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="phoneFieldKeyPressed"/>
       </Events>
     </Component>
@@ -226,7 +229,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="emailField">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="emailFieldActionPerformed"/>
+        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="emailFieldFocusLost"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="saveBtn">
@@ -255,7 +258,32 @@
         <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
           <Format subtype="1" type="1"/>
         </Property>
+        <Property name="text" type="java.lang.String" value="MM/DD/YYYY"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JRadioButton" name="fRadio">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Female"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="fRadioActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JRadioButton" name="mRadio">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Male"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mRadioActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JRadioButton" name="oRadio">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Other"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="oRadioActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
