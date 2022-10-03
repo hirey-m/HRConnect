@@ -1,9 +1,9 @@
 # Hirey_Manav_002786706
 
 ## Introduction
-A Java Swing Application developed for Human Resource Officer to manage all the employees in the company. User can do CRUD (Create Read Update Delete) Operations. This application will allow user to do:
-• Create, Read, Update, Delete employee profile;
-• Search employee profile from employee directory based on different search option(Name, ID, and others fields);
+A Java Swing Application developed for Human Resource Officer to manage all the employees in the company. User can do CRUD (Create Read Update Delete) Operations. This application will allow user to do:<br>
+• Create, Read, Update, Delete employee profile;<br>
+• Search employee profile from employee directory based on different search option(Name, ID, and others fields);<br>
 • Display the photo when reading employee profile.
 
 ## Requirements
