@@ -6,6 +6,15 @@ package ui;
 
 import employeeModel.Employee;
 import employeeModel.EmployeeDirectory;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.lang.System.Logger.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
@@ -20,6 +29,7 @@ public class SearchPane extends javax.swing.JPanel {
      * Creates new form SearchPane
      */
     EmployeeDirectory directory;
+    String selectedImagePath = "";
     
     public SearchPane(EmployeeDirectory directory) {
         initComponents();
@@ -47,6 +57,29 @@ public class SearchPane extends javax.swing.JPanel {
         resultTable = new javax.swing.JTable();
         searchSelectBtn = new javax.swing.JButton();
         searchBtn = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        nameLabel = new javax.swing.JLabel();
+        empIdLabel = new javax.swing.JLabel();
+        ageLabel = new javax.swing.JLabel();
+        genderLabel = new javax.swing.JLabel();
+        sdLabel = new javax.swing.JLabel();
+        lvlLabel = new javax.swing.JLabel();
+        teamLabel = new javax.swing.JLabel();
+        posLabel = new javax.swing.JLabel();
+        phoneLabel = new javax.swing.JLabel();
+        emailLabel = new javax.swing.JLabel();
+        imgLabel = new javax.swing.JLabel();
 
         titleLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
         titleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -108,6 +141,31 @@ public class SearchPane extends javax.swing.JPanel {
             }
         });
 
+        jLabel3.setText("Name:");
+
+        jLabel6.setText("Level:");
+
+        jLabel4.setText("Employee ID:");
+
+        jLabel7.setText("Team Info:");
+
+        jLabel5.setText("Age:");
+
+        jLabel8.setText("Position Title:");
+
+        jLabel9.setText("Gender");
+
+        jLabel10.setText("Phone Number:");
+
+        jLabel11.setText("Start Date:");
+
+        jLabel12.setText("Email ID:");
+
+        jLabel13.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
+        jLabel13.setText("Employee Profile");
+
+        jLabel14.setText("Employee Photo:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -115,21 +173,59 @@ public class SearchPane extends javax.swing.JPanel {
             .addComponent(titleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGap(40, 40, 40)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(comboSearchBy, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(searchBtn))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(232, 232, 232)
-                        .addComponent(searchSelectBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel2)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(comboSearchBy, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(jLabel1)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(searchBtn))
+                        .addComponent(jScrollPane1))
+                    .addComponent(searchSelectBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel13)
+                            .addGap(261, 261, 261))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel4)
+                                .addComponent(jLabel3)
+                                .addComponent(jLabel5)
+                                .addComponent(jLabel9)
+                                .addComponent(jLabel11))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(empIdLabel)
+                                .addComponent(nameLabel)
+                                .addComponent(ageLabel)
+                                .addComponent(genderLabel)
+                                .addComponent(sdLabel))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(38, 38, 38)
+                                    .addComponent(jLabel12))
+                                .addComponent(jLabel10)
+                                .addComponent(jLabel6)
+                                .addComponent(jLabel7)
+                                .addComponent(jLabel8))
+                            .addGap(18, 18, 18)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(emailLabel)
+                                .addComponent(phoneLabel)
+                                .addComponent(lvlLabel)
+                                .addComponent(teamLabel)
+                                .addComponent(posLabel))
+                            .addGap(137, 137, 137)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel14)
+                                .addComponent(imgLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(37, 37, 37))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -145,10 +241,63 @@ public class SearchPane extends javax.swing.JPanel {
                     .addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(searchBtn))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(searchSelectBtn)
-                .addContainerGap(61, Short.MAX_VALUE))
+                .addGap(9, 9, 9)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel13)
+                        .addGap(81, 81, 81)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(nameLabel)
+                                    .addGap(20, 20, 20)
+                                    .addComponent(empIdLabel)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(ageLabel)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(genderLabel)
+                                    .addGap(22, 22, 22)
+                                    .addComponent(sdLabel))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel3)
+                                    .addGap(20, 20, 20)
+                                    .addComponent(jLabel4)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jLabel5)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jLabel9)
+                                    .addGap(22, 22, 22)
+                                    .addComponent(jLabel11)))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel6)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jLabel7)
+                                    .addGap(23, 23, 23)
+                                    .addComponent(jLabel8)
+                                    .addGap(24, 24, 24)
+                                    .addComponent(jLabel10)
+                                    .addGap(31, 31, 31)
+                                    .addComponent(jLabel12))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(lvlLabel)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(teamLabel)
+                                    .addGap(23, 23, 23)
+                                    .addComponent(posLabel)
+                                    .addGap(24, 24, 24)
+                                    .addComponent(phoneLabel)
+                                    .addGap(31, 31, 31)
+                                    .addComponent(emailLabel)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel14)
+                        .addGap(18, 18, 18)
+                        .addComponent(imgLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(40, 40, 40)))
+                .addContainerGap(60, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -158,7 +307,36 @@ public class SearchPane extends javax.swing.JPanel {
 
     private void searchSelectBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchSelectBtnActionPerformed
         // TODO add your handling code here:
-    
+    int SelectedRowIndex = resultTable.getSelectedRow();
+        
+        if (SelectedRowIndex < 0){
+            JOptionPane.showMessageDialog(this, "Please select a row to update.");
+            return;
+        }
+        
+        DefaultTableModel model = (DefaultTableModel) resultTable.getModel();
+        Employee selectedEmp = (Employee) model.getValueAt(SelectedRowIndex, 0);
+               
+                
+        nameLabel.setText(selectedEmp.getName());
+        empIdLabel.setText(String.valueOf(selectedEmp.getEmployeeId()));
+        ageLabel.setText(String.valueOf(selectedEmp.getAge()));
+        genderLabel.setText(selectedEmp.getGender());
+        sdLabel.setText(selectedEmp.getStartDate());
+        lvlLabel.setText(selectedEmp.getLevel());
+        teamLabel.setText(selectedEmp.getTeamInfo());
+        posLabel.setText(selectedEmp.getPosition());
+        phoneLabel.setText(String.valueOf(selectedEmp.getCellNo()));
+        emailLabel.setText(selectedEmp.getEmail());
+        selectedImagePath = selectedEmp.getImage();
+        
+        try {
+            BufferedImage icon = ImageIO.read(new File(selectedImagePath));
+            imgLabel.setIcon(new ImageIcon(icon.getScaledInstance(172, 129, Image.SCALE_DEFAULT)));
+        } catch (IOException ex) {
+            Logger.getLogger(ViewPane.class.getName()).log(java.util.logging.Level.SEVERE, selectedImagePath, ex);
+        }  
+       add(imgLabel);
   
     }//GEN-LAST:event_searchSelectBtnActionPerformed
 
@@ -287,14 +465,37 @@ public class SearchPane extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel ageLabel;
     private javax.swing.JComboBox<String> comboSearchBy;
+    private javax.swing.JLabel emailLabel;
+    private javax.swing.JLabel empIdLabel;
+    private javax.swing.JLabel genderLabel;
+    private javax.swing.JLabel imgLabel;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lvlLabel;
+    private javax.swing.JLabel nameLabel;
+    private javax.swing.JLabel phoneLabel;
+    private javax.swing.JLabel posLabel;
     private javax.swing.JTable resultTable;
+    private javax.swing.JLabel sdLabel;
     private javax.swing.JButton searchBtn;
     private javax.swing.JTextField searchField;
     private javax.swing.JButton searchSelectBtn;
+    private javax.swing.JLabel teamLabel;
     private javax.swing.JLabel titleLabel;
     // End of variables declaration//GEN-END:variables
 
