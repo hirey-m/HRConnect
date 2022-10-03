@@ -2,18 +2,18 @@
 
 ## Introduction
 A Java Swing Application developed for Human Resource Officer to manage all the employees in the company. User can do CRUD (Create Read Update Delete) Operations. This application will allow user to do:
-• Create, Read, Update, Delete employee profile 
-• Search employee profile from employee directory based on different search option(Name, ID, and others fields) 
-• Display the photo when reading employee profile
+• Create, Read, Update, Delete employee profile;
+• Search employee profile from employee directory based on different search option(Name, ID, and others fields);
+• Display the photo when reading employee profile.
 
 ## Requirements
 Netbeans IDE 15, Java 18.0.2.1
 
 ## Installation
-Go to  https://github.com/hirey-m/Hirey_Manav_002786706 and close the repository. Run the HomeJFrame.java files in Netbeans IDE and run the application.
+Go to https://github.com/hirey-m/Hirey_Manav_002786706 and clone the repository. Run the HomeJFrame.java files in Netbeans IDE and run the application.
 
 ## Configuration
-There is no configuration required for these modules as they don't have any configurable settings. Clear caches for faster loading and viewing of the page.
+No configuration needed for these modules since they don't have configurable settings. Tip: Caches for faster viewing and reduce load times of pages.
 
 ## Files
 **Employee.java** - Consists of declaration of various employee details such as Name, ID, Age, etc.<br>
