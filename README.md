@@ -7,7 +7,7 @@ A Java Swing Application developed for Human Resource Officer to manage all the 
 • Display the photo when reading employee profile
 
 ## Requirements
-Netbeans IDE, Java 18.0.2.1
+Netbeans IDE 15, Java 18.0.2.1
 
 ## Installation
 Go to  https://github.com/hirey-m/Hirey_Manav_002786706 and close the repository. Run the HomeJFrame.java files in Netbeans IDE and run the application.
