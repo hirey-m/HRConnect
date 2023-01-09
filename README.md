@@ -1,4 +1,4 @@
-# Hirey_Manav_002786706
+# Human-Resource-Manager
 
 ## Introduction
 A Java Swing Application developed for Human Resource Officer to manage all the employees in the company. User can do CRUD (Create Read Update Delete) Operations. This application will allow user to do:<br>
